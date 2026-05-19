@@ -115,6 +115,25 @@ fn main() {
                 println!("See ya later!");
                 break;
             }
+            "add" => {
+                let input_category = input_ask("Choose a category:");
+                let input_description = input_ask("Description:");
+                let input_cost = input_ask("Cost:");
+                if let Ok(cost) = input_cost.parse::<f64>() {
+                    let expense_new = Expense {
+                        amount: cost,
+                        description: input_description,
+                        category: Category::from_str(&input_category),
+                    };
+                    exp_vec.push(expense_new);
+                    println!("Expense added")
+                } else {
+                    println!("Cost value not valid, please type a number")
+                }
+            }
+            "list" => {
+                println!("{:?}", exp_vec)
+            }
             _ => {}
         }
     }
